@@ -29,22 +29,24 @@ sd.resoluton = (1200, 600)
 # можно поиграть -шрифтами- цветами и углами отклонения
 
 root_point = sd.get_point(300, 30)
-def draw_brunches(start_point, angle, length):
+def draw_brunches(start_point, angle, length, width):
     if length < 2:
         return
-    branch1 = sd.get_vector(start_point=start_point, angle=angle, length=length)
+    branch1 = sd.get_vector(start_point=start_point, angle=angle, length=length, width=width)
     branch1.draw()
     next_point = branch1.end_point
     deviation_length = random.uniform(-0.2, 0.2) * 0.75 * length
     next_length = length * .75
+    next_width = width - 2
     draw_brunches(start_point=next_point, angle=angle - sd.random_number(15, 45),
-                  length=next_length + deviation_length)
+                  length=next_length + deviation_length, width=next_width)
     draw_brunches(start_point=next_point, angle=angle + sd.random_number(15, 45),
-                  length=next_length + deviation_length)
+                  length=next_length + deviation_length, width=next_width)
 
 
 
-draw_brunches(start_point=root_point, angle=90, length=100)
+draw_brunches(start_point=root_point, angle=90, length=100, width=30)
+
 
 
 # 4) Усложненное задание (делать по желанию)
